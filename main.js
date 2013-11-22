@@ -3,7 +3,8 @@ require.config({
     'jquery': 'scripts/vendor/jquery/jquery',
     'underscore': 'scripts/vendor/underscore/underscore',
     'backbone': 'scripts/vendor/backbone/backbone',
-    'jade': "scripts/vendor/jade/load_jade-v0.27.6"
+    'jade': "scripts/vendor/jade/load_jade-v0.27.6",
+    "backbone-localstorage": "scripts/vendor/backbone-localstorage/backbone-localstorage"
   }
 });
 
