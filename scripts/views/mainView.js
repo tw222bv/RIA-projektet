@@ -7,6 +7,7 @@ define(['backbone', "jquery", "jade!templates/main"] , function(Backbone, $, tem
   	template: template,
   	render: function (){
   		this.$el.empty();
+      console.log(this.collection);
   		this.$el.html(template({hello: "Hello World", tasks: this.collection }));
   		return this;
   	}
