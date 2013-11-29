@@ -6,11 +6,8 @@ define(['underscore','backbone.localStorage'], function(_, Backbone) {
 				created: "",
 				completed: false
 			},
-			validate: function(attrs){
-				if(_.isEmpty(attrs.title)){
-					return "Missing title";
-				}
-			}
-		});
+			title: function(){ return this.get("title"); },
+			created: function(){ return this.get("created"); }		
+	});
   return Todo;
 });
