@@ -14,6 +14,7 @@ define(['jquery', 'underscore', 'backbone', "scripts/views/mainView", "scripts/c
 
 		app_router.on('route:startPage', function () {
 			var tasks = new Todos();
+			tasks.create({ title: "awesomeTitle", created: new Date().getTime() });
 			var mainView = new MainView({el: ".main", collection: tasks});
 			tasks.fetch({
 				success: function(tasks){
