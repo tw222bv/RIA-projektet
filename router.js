@@ -3,7 +3,7 @@ define(['jquery', 'underscore', 'backbone', "scripts/views/mainView", "scripts/c
 	var AppRouter = Backbone.Router.extend({ // Adding some routes
 		routes: {
 		'todo/:id': 'todo',
-      	'*actions': 'startPage'
+		'*actions': 'startPage'
 
 		}
 	});
@@ -13,23 +13,21 @@ define(['jquery', 'underscore', 'backbone', "scripts/views/mainView", "scripts/c
 		var app_router = new AppRouter();
 
 		app_router.on('route:startPage', function () {
-			var tasks = new Todos();
-			tasks.create({ title: "awesomeTitle", created: new Date().getTime() });
-			
+			var tasks = new Todos();			
 			var mainView = new MainView({el: ".main", collection: tasks});
 			tasks.fetch({
 				success: function(tasks){
 					mainView.render();
 				}
 			});
-    	});
-    	app_router.on('route:todo', function (id) {
+		});
+		app_router.on('route:todo', function (id) {
 			$(".main").html("<h2>"+id+"</h2>");
-    	});
+		});
 
-    	Backbone.history.start();
-  	};
-  	return { 
-   		initialize: initialize
-  	};
+		Backbone.history.start();
+	};
+	return { 
+		initialize: initialize
+	};
 });
