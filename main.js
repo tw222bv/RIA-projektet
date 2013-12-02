@@ -10,9 +10,7 @@ require.config({
     backbone: 'scripts/libs/backbone/backbone',
   },
   shim: {
-    underscore: {
-      exports: "_"
-    },
+
     jquery: {
       exports: "jQuery"
     },
