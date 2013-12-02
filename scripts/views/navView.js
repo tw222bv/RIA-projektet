@@ -1,5 +1,5 @@
 // This is the main-view, more info will come in time
-define(["jade!templates/nav", 'backbone', "jquery"] , function(template) {
+define(["jade!templates/nav","backbone", "jquery", "jquery.bootstrap"] , function(template, Backbone, $) {
   var contentView = Backbone.View.extend({
     template: template,
     render: function (){
