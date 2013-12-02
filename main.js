@@ -5,7 +5,7 @@ require.config({
     underscore: 'scripts/libs/underscore/underscore',
     jade: "scripts/libs/jade/load_jade-v0.27.6",
     backbone: 'scripts/libs/backbone/backbone',
-    "backbone.localStorage": "scripts/libs/backbone-localstorage/backbone-localstorage"
+    "backbone.localStorage": "scripts/libs/backbone-localstorage/backbone-localstorage",
   },
   shim: {
     underscore: {

@@ -8,10 +8,10 @@ define(['jquery', 'underscore', 'backbone', "scripts/views/masterView", "scripts
 		},
 		index: function(){
 			var collection = new Todos();
-			var masterView = new MasterView({collection: collection});
+			var masterView = new MasterView({el: ".main", collection: collection});
 			collection.fetch({
 				success: function(tasks){
-          			$(".main").html(masterView.render().el).show();
+          			$(".main").append(masterView.render().el).show();
         		}
 
 			});
