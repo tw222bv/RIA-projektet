@@ -12,6 +12,7 @@ define(['jquery', 'underscore', 'backbone', "scripts/views/masterView", "scripts
 			collection.fetch({
 				success: function(tasks){
           			$(".main").append(masterView.render().el).show();
+          			$("#todo").focus();
         		}
 
 			});
