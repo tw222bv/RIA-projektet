@@ -1,11 +1,11 @@
-define(['backbone', "jquery", "underscore", "scripts/views/contentView", "scripts/views/createTodoView", "scripts/views/navView", "jade!templates/main"] , function(Backbone, $, _, ContentView, FormView, NavView, template) {
+define(['backbone', "jquery", "underscore", "scripts/views/contentView", "scripts/views/createTodoView", "scripts/views/navView", "jade!templates/main"] , function(Backbone, $, _, ContentView, CreateTodoView, NavView, template) {
 	var masterView = Backbone.View.extend({
 		 className: 'Content-todo',
 		 initialize: function(){
 		 	this.$el.hide();
 		 	this.$el.append(template());
 		 	this.navView = new NavView({el: "#Nav"});
-			this.formView = new FormView({ el: "#TaskInput", collection: this.collection});
+			this.createTodoView = new CreateTodoView({ el: "#TaskInput", collection: this.collection});
 			this.contentView = new ContentView({ el: "#Content", collection: this.collection});
 
 		},
