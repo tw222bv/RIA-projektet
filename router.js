@@ -1,35 +1,29 @@
 // This is the Router
 define(['jquery', 'underscore', 'backbone', "scripts/views/masterView", "scripts/collections/todos"], function($, _, Backbone, MasterView, Todos){
 	var AppRouter = Backbone.Router.extend({ // Adding some routes
+		initialize: function(){
+			this.collection = new Todos();
+			this.masterView = new MasterView({el: ".main", collection: this.collection});
+			Backbone.history.start();
+		},
 		routes: {
 		'todo/:id': 'todo',
 		'*actions': 'index'
 
 		},
 		index: function(){
-			var collection = new Todos();
-			var masterView = new MasterView({el: ".main", collection: collection});
-			collection.fetch({
+			var that = this;
+			this.collection.fetch({
 				success: function(tasks){
-          			$(".main").append(masterView.render().el).show();
+          			$(".main").append(that.masterView.render().el).show();
           			$("#todo").focus();
         		}
-
 			});
 		},
 		todo: function(id){
-
 			$(".main").html("<h2>"+id+"</h2>");
 		}
 
 	});
-
-	var initialize  = function (){
-		// Making a new route-object, and listen to the url where we're heading and what to do.
-		var app_router = new AppRouter();
-		Backbone.history.start();
-	};
-	return { 
-		initialize: initialize
-	};
+	return AppRouter;
 });

@@ -1,5 +1,6 @@
-body { padding-top: 70px!important; }
-
+body {
+   padding-top: 70px!important;
+}
 .setCenter{
 	text-align: center!important; /* center checkbox horizontally */
     vertical-align: middle!important; /* center checkbox vertically */
@@ -15,6 +16,10 @@ float: none;
 display: table;
 margin: 0 auto;
 
+}
+.overLine{
+	border-top: solid 3px #666;
+	height: 20px;
 }
 input.center{
 	-webkit-transform: scale(1.8,1.8);
@@ -38,4 +43,7 @@ td h3{
 	margin-top: -1%!important;
 	position: absolute;
 
+}
+.text-completed{
+	text-decoration: line-through;
 }

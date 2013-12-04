@@ -28,6 +28,7 @@ require.config({
   }
 });
 // When the app.js is loaded, the function will start that start the application
-require(['app'], function(App) {
-  App.initialize();
+require(['router', "backbone"], function(Router, Backbone) {
+  new Router();
+
 });

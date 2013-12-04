@@ -9,15 +9,17 @@
 				tbody
 					each task in tasks
 						tr.oneTodo
-							td.text-center.pagination-centered			
-								if task.completed()
-
-										input.center#check(data-id=task.cid, type="checkbox", checked="checked")
-								else
-									
-										input.center#check(data-id=task.cid, type="checkbox")
-							td.maxWidth
-								h3=task.title()
+							if task.completed()
+								td.text-center.pagination-centered	
+									input.center#check(data-id=task.cid, type="checkbox", checked="checked")
+								td.maxWidth.overLine
+									h3=task.title()
+							else
+								td.text-center.pagination-centered	
+									input.center#check(data-id=task.cid, type="checkbox")
+								td.maxWidth
+									h3=task.title()
+									h2=task.id
 							td
 								button.close.center.delete-task(data-id=task.cid, aria-hidden="true", type="button") &times;
 						

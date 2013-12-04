@@ -1,5 +1,5 @@
 // This is the createtodo-view, more info will come in time
-define(['backbone', "jquery", "jade!templates/todoForm"] , function(Backbone, $, template) {
+define(['backbone', "jquery", "jade!templates/todoForm", "scripts/models/todo"] , function(Backbone, $, template, Todo) {
   var contentView = Backbone.View.extend({
     template: template,
     events: {
@@ -8,20 +8,16 @@ define(['backbone', "jquery", "jade!templates/todoForm"] , function(Backbone, $,
     },
     add: function(e){
       if(e.which === 13 || e.which === 1 && e.currentTarget.id === "addTask"){
-        this.input = $("#todo");
-        if(this.input.val().trim().length && this.input.val().trim().length < 12){
-          var input = this.input.val().trim();
-          if(input.match(/^[a-zåäö\s]*$/i)){
-            this.collection.create({title: this.input.val(), created: new Date() });
-            $("#todo").val("");
-          }
-          else{
-            // TODO make error-message wrong format
-          }
+        this.input = this.$el.find("#todo").val().trim();
+        var model = new Todo( {title: this.input, created: new Date()} );
+
+        if (model.isValid()) {
+          this.collection.create(model);
         }
-        else{
-          // TODO: make error-message between 1-11 characters
+        else if(!model.isValid()){
+          // Add error messages
         }
+        this.$el.find("#todo").val("");
       }
     },
 
