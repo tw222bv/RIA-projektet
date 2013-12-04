@@ -1,1 +1,41 @@
 body { padding-top: 70px!important; }
+
+.setCenter{
+	text-align: center!important; /* center checkbox horizontally */
+    vertical-align: middle!important; /* center checkbox vertically */
+}
+.margin-Right{
+	margin-right: 5%;
+	margin-left: 2%;
+}
+a { display:block; /* Pre-existing code */ }
+button.center {
+
+float: none;
+display: table;
+margin: 0 auto;
+
+}
+input.center{
+	-webkit-transform: scale(1.8,1.8);
+	-moz-transform: scale(1.8,1.8);
+	-o-transform: scale(1.8,1.8);
+}
+#TaskInput{
+	margin-bottom: 2%;
+}
+.maxWidth{
+	width: 100%;
+	height: 100%;
+}
+td h3{
+	margin-bottom: 4%;
+}
+.delete-task{
+	-webkit-transform: scale(1.6,1.6);
+	-moz-transform: scale(1.6,1.6);
+	-o-transform: scale(1.6,1.6);
+	margin-top: -1%!important;
+	position: absolute;
+
+}

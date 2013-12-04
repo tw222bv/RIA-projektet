@@ -7,8 +7,8 @@ define(['underscore','backbone'], function(_, Backbone) {
 			completed: false
 		},
 		title: function(){ return this.get("title"); },
-		created: function(){ return this.get("created"); }
-
+		created: function(){ return this.get("created"); },
+		completed: function(){ return this.get("completed"); }
 
 	});
   return Todo;

@@ -1,7 +1,23 @@
-.col-md-10
-	if typeof tasks !== "undefined"
-		each task in tasks
-			h3=task.title()
-			p=task.created()
-		
+.row
+	.col-md-12
+		if typeof tasks !== "undefined"
+			table
+				colgroup
+					col.col-xs-1
+					col.col-xs-8
+					col.col-xs-3
+				tbody
+					each task in tasks
+						tr.oneTodo
+							td.text-center.pagination-centered			
+								if task.completed()
 
+										input.center#check(data-id=task.cid, type="checkbox", checked="checked")
+								else
+									
+										input.center#check(data-id=task.cid, type="checkbox")
+							td.maxWidth
+								h3=task.title()
+							td
+								button.close.center.delete-task(data-id=task.cid, aria-hidden="true", type="button") &times;
+						

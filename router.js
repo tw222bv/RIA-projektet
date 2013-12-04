@@ -18,6 +18,7 @@ define(['jquery', 'underscore', 'backbone', "scripts/views/masterView", "scripts
 			});
 		},
 		todo: function(id){
+
 			$(".main").html("<h2>"+id+"</h2>");
 		}
 

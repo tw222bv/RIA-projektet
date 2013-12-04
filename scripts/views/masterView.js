@@ -12,7 +12,7 @@ define(['backbone', "jquery", "underscore", "scripts/views/contentView", "script
 		render: function(){
 			this.$el.show();
 			this.navView.render();
-			this.formView.render();
+			this.createTodoView.render();
 			this.contentView.render();
 			return this;
 		}
