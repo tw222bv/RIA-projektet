@@ -30,5 +30,4 @@ require.config({
 // When the app.js is loaded, the function will start that start the application
 require(['router', "backbone"], function(Router, Backbone) {
   new Router();
-
 });

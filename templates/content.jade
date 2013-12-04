@@ -4,22 +4,23 @@
 			table
 				colgroup
 					col.col-xs-1
-					col.col-xs-8
-					col.col-xs-3
+					col.col-md-6
+					col.col-xs-1
 				tbody
 					each task in tasks
 						tr.oneTodo(data-id=task.id)
 							if task.completed()
 								td.text-center.pagination-centered	
 									input.center#check(type="checkbox", checked="checked")
-								td.maxWidth.overLine
-									h3.taskTitle=task.title()
+								td.col-md-10
+									h2.taskTitle.centerTable=task.title()
 							else
-								td.text-center.pagination-centered	
+								td.text-center.pagination-centered.col-md-1
 									input.center#check(type="checkbox")
-								td.maxWidth
-									h3.taskTitle=task.title()
+								td.col-md-10
+									h2.taskTitle.centerTable=task.title()
 									
-							td
-								button.close.center.delete-task(aria-hidden="true", type="button") &times;
+							td.col-md-1.pagination-centered.text-center
+								button.btn.btn-danger.delete-task.btn-lg.hideButton(aria-hidden="true", type="button")
+									span.glyphicon.glyphicon-remove
 						
