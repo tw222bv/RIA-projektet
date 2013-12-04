@@ -7,8 +7,11 @@ define(['backbone', "jquery", "jade!templates/content"] , function(Backbone, $, 
     events: {
       "click .delete-task": "remove",
       "click #check": "check",
-      "mouseenter .oneTodo"   : "hoverOn",
-      "mouseleave .oneTodo"   : "hoverOff"
+      "mouseenter .oneTodo": "hoverOn",
+      "mouseleave .oneTodo": "hoverOff",
+      "dblclick .taskTitle": "changeHTML",
+      "blur #edit-task-input": "changeHTML",
+      "keypress #edit-task-input": "blur"
     },
     template: template,
     render: function (){
@@ -18,18 +21,41 @@ define(['backbone', "jquery", "jade!templates/content"] , function(Backbone, $, 
       return this;
     },
     remove: function(e){
-      var id = $(e.target).attr("data-id");
+      var id = $(e.target).closest("tr").attr("data-id");
       if(id !== ""){
         var model = this.collection.get(id);
         model.destroy();
       }
     },
     check: function(e){
-      var id = $(e.target).attr("data-id");
+      var id = $(e.target).closest("tr").attr("data-id");
       if(id !== ""){
         var model = this.collection.get(id);
         model.set("completed", e.target.checked);
         model.save();
+      }
+    },
+    blur: function(e){
+      var element = $(e.currentTarget);
+      if(e.which === 13){
+        element.blur();
+      }
+    },
+    changeHTML: function(e){
+      var element = $(e.currentTarget);
+      if(element.hasClass("taskTitle"))
+      {
+        var input = $("<input id='edit-task-input' class='form-control input-lg' type='text' value='"+element.text()+"' />");
+        element.replaceWith(input);
+        input.focus().select();    
+      }
+      else{
+          var id = element.closest("tr").attr("data-id");
+          var model = this.collection.get(id); 
+          model.set("title", element.val());
+          if(model.isValid()){
+            model.save(); // TODO: Fixa vy, om det blir fel validering så kommer de till vy ändå
+          }        
       }
     },
     hoverOn: function(e){

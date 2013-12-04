@@ -8,18 +8,18 @@
 					col.col-xs-3
 				tbody
 					each task in tasks
-						tr.oneTodo
+						tr.oneTodo(data-id=task.id)
 							if task.completed()
 								td.text-center.pagination-centered	
-									input.center#check(data-id=task.cid, type="checkbox", checked="checked")
+									input.center#check(type="checkbox", checked="checked")
 								td.maxWidth.overLine
-									h3=task.title()
+									h3.taskTitle=task.title()
 							else
 								td.text-center.pagination-centered	
-									input.center#check(data-id=task.cid, type="checkbox")
+									input.center#check(type="checkbox")
 								td.maxWidth
-									h3=task.title()
-									h2=task.id
+									h3.taskTitle=task.title()
+									
 							td
-								button.close.center.delete-task(data-id=task.cid, aria-hidden="true", type="button") &times;
+								button.close.center.delete-task(aria-hidden="true", type="button") &times;
 						
