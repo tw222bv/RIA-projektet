@@ -3,6 +3,7 @@ define(['backbone', "jquery", "jade!templates/content", "jade!templates/editInpu
   var contentView = Backbone.View.extend({
     initialize: function(){
       this.collection.on('all', this.render, this);
+    
     },
     events: {
       "click .delete-task": "remove",

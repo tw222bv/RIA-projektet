@@ -2,7 +2,7 @@ define(['backbone', "jquery", "underscore", "scripts/views/contentView", "script
 	var masterView = Backbone.View.extend({
 		 className: 'Content-todo',
 		 initialize: function(){
-		 	this.$el.hide();
+		 	this.$el.empty().hide();
 		 	this.$el.append(template());
 		 	this.navView = new NavView({el: this.$el.find("#Nav")});
 			this.createTodoView = new CreateTodoView({ el: this.$el.find("#TaskInput"), collection: this.collection});
