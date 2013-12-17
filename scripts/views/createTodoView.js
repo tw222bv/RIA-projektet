@@ -9,16 +9,16 @@ define(['backbone', "jquery", "jade!templates/todoForm", "scripts/models/todo"] 
     add: function(e){
       if(e.which === 13 || e.which === 1 && e.currentTarget.id === "addTask"){
         this.input = this.$el.find("#todo").val().trim();
-        var model = new Todo( { id: _.uniqueId(), title: this.input, created: new Date()} );
+        var model = new Todo( { title: this.input, created: new Date()} );
 
         if (model.isValid()) {
           this.collection.create(model);
+          this.$el.find("#todo").val("");
         }
         else if(!model.isValid()){
-          // Add error messages
+          // TODO: Add error messages
           console.log(model.validationError);
         }
-        this.$el.find("#todo").val("");
       }
     },
 

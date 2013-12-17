@@ -1,9 +1,11 @@
 // This is the main-view, more info will come in time
-define(['backbone', "jquery", "jade!templates/content", "jade!templates/editInput"] , function(Backbone, $, template,editTemplate) {
+define(['backbone', "jquery", "jade!templates/content", "jade!templates/editInput", "jade!templates/oneContent"] , function(Backbone, $, template,editTemplate, oneTemplate) {
   var contentView = Backbone.View.extend({
     initialize: function(){
-      this.collection.on('all', this.render, this);
-    
+        this.collection.on('add', this.renderIndex, this);
+        this.collection.on('change', this.renderIndex, this);
+        this.collection.on('remove', this.renderIndex, this);
+      
     },
     events: {
       "click .delete-task": "remove",
@@ -16,21 +18,26 @@ define(['backbone', "jquery", "jade!templates/content", "jade!templates/editInpu
       "keypress .edit-task-button": "blur"
     },
     template: template,
-    render: function (){
+    renderIndex: function (){
       this.$el.empty();
       this.$el.append(template({ tasks: this.collection.models }));
       return this;
     },
+    renderOne: function(){
+      this.$el.append(oneTemplate({ task: this.collection }));
+      return this;
+    },
     remove: function(e){
-      var id = $(e.target).closest("tr").attr("data-id");
+        var id = $(e.target).closest(".oneTodo").attr("data-id");
 
-      if(id !== ""){
-        var model = this.collection.get(id);
-        model.destroy();
-      }
+        if(id !== ""){
+          var model = this.collection.get(id);
+          model.destroy();
+        
+        }
     },
     check: function(e){
-      var id = $(e.target).closest("tr").attr("data-id");
+      var id = $(e.target).closest(".oneTodo").attr("data-id");
 
       if(id !== ""){
         var model = this.collection.get(id);

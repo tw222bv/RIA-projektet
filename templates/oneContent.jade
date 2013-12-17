@@ -1,0 +1,18 @@
+.col-md-12
+	if typeof task !== "undefined"
+		.oneTodo(data-id=task.id)
+			.row
+				.col-md-10
+					h2.text-center.taskTitle=task.title()
+
+			.row
+				.col-md-3
+					a.btn.btn-success.btn-lg.btn-block(title="Complete Task", type="button") Complete
+
+				.col-md-3
+					a.btn.btn-primary.btn-lg.btn-block(href="#todo/"+task.id, title="Edit task", type="button") Edit
+						
+
+				.col-md-3
+					a.btn.btn-danger.delete-one.btn-lg.btn-block(href="index.html", title="Delete task", type="button") Remove
+				
