@@ -11,10 +11,10 @@
 					each task in tasks
 						tr.oneTodo(data-id=task.id)
 							if task.completed()
-								td.text-center.pagination-centered	
+								td.text-center.pagination-centered
 									input.center#check(type="checkbox", checked="checked")
 								td
-									h2.taskTitle.centerTable=task.title()
+									h2.taskTitle.centerTable.text-completed=task.title()
 							else
 								td.text-center.pagination-centered.col-md-1
 									input.center#check(type="checkbox")
