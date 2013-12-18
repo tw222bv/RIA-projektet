@@ -1,14 +1,13 @@
-// This is the main-view, more info will come in time
+// This is the listView, but it says contentView? Yeah I know, deal with it. 
 define(['backbone', "jquery", "jade!templates/content", "jade!templates/editInput", "jade!templates/oneContent"] , function(Backbone, $, template,editTemplate, oneTemplate) {
   var contentView = Backbone.View.extend({
+    // Setting a listener when it's initialize. If anything happens, it will re-render
     initialize: function(){
-        this.collection.on('add', this.renderIndex, this);
-        this.collection.on('change', this.renderIndex, this);
-        this.collection.on('remove', this.renderIndex, this);
-      
+        this.listenTo(this.collection,"all",this.render)
     },
+    // very events, such functions
     events: {
-      "click .delete-task": "remove",
+      "click .delete-task": "delete",
       "click #check": "check",
       "mouseenter .oneTodo": "hoverOn",
       "mouseleave .oneTodo": "hoverOff",
@@ -18,18 +17,14 @@ define(['backbone', "jquery", "jade!templates/content", "jade!templates/editInpu
       "keypress .edit-task-button": "blur"
     },
     template: template,
-    renderIndex: function (){
+    render: function (){
       this.$el.empty();
       this.$el.append(template({ tasks: this.collection.models }));
-      return this;
-    },
-    renderOne: function(){
-      this.$el.append(oneTemplate({ task: this.collection }));
-      return this;
-    },
-    remove: function(e){
-        var id = $(e.target).closest(".oneTodo").attr("data-id");
 
+      return this;
+    },
+    delete: function(e){
+        var id = $(e.target).closest(".oneTodo").attr("data-id");
         if(id !== ""){
           var model = this.collection.get(id);
           model.destroy();
@@ -52,9 +47,12 @@ define(['backbone', "jquery", "jade!templates/content", "jade!templates/editInpu
         element.blur();
       }
     },
+    // I think you can figure out almost everything, except for this badass, it's a supermegafunction.
+    // It will change the h2-tag into a input-field, crazy right?
+    // So you can change the content of the task/todo
     changeHTML: function(e){
-      var element = $(e.currentTarget);
 
+      var element = $(e.currentTarget);
       if(element.hasClass("taskTitle"))
       {
         var input = $(editTemplate({ val: element.text() }));
@@ -72,6 +70,7 @@ define(['backbone', "jquery", "jade!templates/content", "jade!templates/editInpu
           }        
       }
     },
+    // Here's some button-magic, does it have a delete-button? Or is the task/todo invincible? 
     hoverOn: function(e){
       $(e.currentTarget).find(".delete-task").removeClass("hideButton");
     },

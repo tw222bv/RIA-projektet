@@ -1,49 +1,44 @@
 // This is the Router
-define(['jquery', 'underscore', 'backbone', "scripts/views/masterView", "scripts/collections/todos", "scripts/views/contentView"], function($, _, Backbone, MasterView, Todos, ContentView){
+define(['jquery', 'underscore', 'backbone', "scripts/views/masterView", "scripts/collections/todos"], function($, _, Backbone, MasterView, Todos){
 	var AppRouter = Backbone.Router.extend({ // Adding some routes
 		initialize: function(){
 			this.todos = new Todos();
 			this.masterView = new MasterView({el: ".main", collection: this.todos});
 			Backbone.history.start();
 		},
+		// Two routes can be found in the router, one for single task, the other's a default route
 		routes: {
 		'todo/:id': 'todo',
 		'*actions': 'index'
 
 		},
+		// This is the default route, whatever you type in the url leads you here
+		// "except for #todo/:someId".
+		// After fetching the collection, it will render a list for tasks/todos
 		index: function(){
 			var self = this;
-			$(".main").find("#TaskInput").show();
-			$(".main").find("#Content").empty();
-
-			
 			this.todos.fetch({
 				success: function(tasks){
-					var contentView = new ContentView({ el: $(".main").find("#Content"), collection: tasks});
-          			$(".main").append(self.masterView.render().el);
-          			contentView.renderIndex();
-          			$("#todo").focus();
+          			$(".main").append(self.masterView.renderList(tasks).el);
         		}
 			});
 		},
+		// This route is for single picked tasks.
+		// After fetching the collection, it will get one task/todo and see if it's 
+		// not empty. If it's not, it will render single task/todo, else page not found.
 		todo: function(id){
 			var self = this;
-			$(".main").find("#TaskInput").hide();
-			$(".main").find("#Content").empty();
-
 			this.todos.fetch({
 				success: function(tasks){
-
 					var task = tasks.get(id);
-					var contentView = new ContentView({ el: $(".main").find("#Content"), collection: task });
-   					$(".main").append(self.masterView.render().el);
-          			contentView.renderOne();
-
+					if(typeof task !== "undefined"){
+   						$(".main").append(self.masterView.renderOne(task).el);
+   					}else{
+   						$(".main").append(self.masterView.renderNotFound().el);
+   					}
 				}
 			});
-
 		}
-
 	});
 	return AppRouter;
 });

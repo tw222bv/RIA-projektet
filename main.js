@@ -27,7 +27,8 @@ require.config({
   
   }
 });
-// When the app.js is loaded, the function will start that start the application
+// When the router.js is loaded, the function will start that start the application.
+// It will create a new Router-object
 require(['router', "backbone"], function(Router, Backbone) {
   new Router();
 });

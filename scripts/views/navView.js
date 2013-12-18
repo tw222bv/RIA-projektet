@@ -1,4 +1,4 @@
-// This is the main-view, more info will come in time
+// This is the main-view, it's the motherfucking navigation on the top
 define(["jade!templates/nav","backbone", "jquery", "jquery.bootstrap"] , function(template, Backbone, $) {
   var contentView = Backbone.View.extend({
     template: template,

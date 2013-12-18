@@ -1,4 +1,4 @@
-// This is the createtodo-view, more info will come in time
+// This is the createtodo-view, it will render out the add-task/todo input-field. 
 define(['backbone', "jquery", "jade!templates/todoForm", "scripts/models/todo"] , function(Backbone, $, template, Todo) {
   var contentView = Backbone.View.extend({
     template: template,
