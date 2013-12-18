@@ -19,7 +19,7 @@ define(['jquery', 'underscore', 'backbone', "scripts/views/masterView", "scripts
 			var self = this;
 			this.todos.fetch({
 				success: function(tasks){
-          			$(".main").append(self.masterView.renderList(tasks).el);
+          			$(".main").append(self.masterView.renderList(tasks));
         		}
 			});
 		},
@@ -32,9 +32,9 @@ define(['jquery', 'underscore', 'backbone', "scripts/views/masterView", "scripts
 				success: function(tasks){
 					var task = tasks.get(id);
 					if(typeof task !== "undefined"){
-   						$(".main").append(self.masterView.renderOne(task).el);
+   						$(".main").append(self.masterView.renderOne(task));
    					}else{
-   						$(".main").append(self.masterView.renderNotFound().el);
+   						$(".main").append(self.masterView.renderNotFound());
    					}
 				}
 			});
