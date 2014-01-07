@@ -18,9 +18,15 @@ define(['backbone', "jquery","jade!templates/editInput", "jade!templates/oneCont
     template: template,
     // This will render the single-task view
     render: function (){
-      this.$el.empty();
-      this.$el.append(template({ task: this.model }));
-      return this;
+      if(this.model.isValid()){
+          this.$el.empty();
+          console.log(this.model);
+          this.$el.append(template({ task: this.model }));
+          return this;
+      }
+        else {
+          this.$("#edit-task-input").css("border-color", "red");
+      }
     },
     delete: function(e){   
         this.model.destroy();
